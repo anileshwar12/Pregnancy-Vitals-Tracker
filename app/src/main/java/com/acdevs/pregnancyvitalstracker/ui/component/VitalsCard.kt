@@ -3,18 +3,15 @@ package com.acdevs.pregnancyvitalstracker.ui.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.FitnessCenter
-import androidx.compose.material.icons.outlined.MonitorHeart
-import androidx.compose.material.icons.outlined.PregnantWoman
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.acdevs.pregnancyvitalstracker.R
 import com.acdevs.pregnancyvitalstracker.data.local.Vitals
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,16 +39,16 @@ fun VitalsCard(vitals: Vitals) {
                     Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    VitalsItem(Icons.Outlined.Favorite, "${vitals.heartRate} bpm")
-                    VitalsItem(Icons.Outlined.MonitorHeart, "${vitals.systolicBP}/${vitals.diastolicBP} mmHg")
+                    VitalsItem(painterResource(R.drawable.heartrate), "${vitals.heartRate} bpm")
+                    VitalsItem(painterResource(R.drawable.bloodpressure), "${vitals.systolicBP}/${vitals.diastolicBP} mmHg")
                 }
                 Spacer(Modifier.height(12.dp))
                 Row(
                     Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    VitalsItem(Icons.Outlined.FitnessCenter, "${vitals.weight} kg")
-                    VitalsItem(Icons.Outlined.PregnantWoman, "${vitals.kicks} kicks")
+                    VitalsItem(painterResource(R.drawable.scale), "${vitals.weight} kg")
+                    VitalsItem(painterResource(R.drawable.newborn), "${vitals.kicks} kicks")
                 }
             }
 
@@ -61,12 +58,14 @@ fun VitalsCard(vitals: Vitals) {
                     .fillMaxWidth()
                     .background(Color(0xFF8E24AA))
                     .padding(vertical = 8.dp),
-                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = date,
                     color = Color.White,
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .padding(end = 16.dp)
                 )
             }
         }
@@ -74,10 +73,10 @@ fun VitalsCard(vitals: Vitals) {
 }
 
 @Composable
-private fun VitalsItem(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String) {
+private fun VitalsItem(icon: Painter, text: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(
-            imageVector = icon,
+            painter = icon,
             contentDescription = null,
             tint = Color.Black,
             modifier = Modifier.size(20.dp)
@@ -87,18 +86,4 @@ private fun VitalsItem(icon: androidx.compose.ui.graphics.vector.ImageVector, te
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun VitalsCardPreview() {
-//    VitalsCard(
-//        vitals = Vitals(
-//            id = 0,
-//            systolicBP = 129,
-//            diastolicBP = 86,
-//            heartRate = 87,
-//            weight = 75f,
-//            kicks = 9,
-//            timestamp = 1731364920000L // Sun, 12 Jan 2025 10:22 am
-//        )
-//    )
-//}
+
