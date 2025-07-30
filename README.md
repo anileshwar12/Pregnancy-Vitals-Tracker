@@ -49,7 +49,7 @@ A modern Android application built using Jetpack Compose and MVVM architecture, 
 
 | Main Screen | Add Vitals Dialog | Reminder Notification |
 |-------------|-------------------|------------------------|
-| ![Main Screen](screenshots/main_screen.png) | ![Add Dialog](screenshots/add_dialog.png) | ![Notification](screenshots/notification.png) |
+| ![Main Screen](screenshots/main_screen.jpg) | ![Add Dialog](screenshots/vitals_dialog.jpg) | ![Notification](screenshots/notification.jpg) |
 
 ---
 
