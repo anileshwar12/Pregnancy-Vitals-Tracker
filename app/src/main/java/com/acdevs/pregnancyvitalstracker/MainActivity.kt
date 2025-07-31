@@ -1,9 +1,9 @@
 package com.acdevs.pregnancyvitalstracker
 
+import MainScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.acdevs.pregnancyvitalstracker.ui.screen.MainScreen
 import com.acdevs.pregnancyvitalstracker.ui.theme.PregnancyVitalsTrackerTheme
 import com.acdevs.pregnancyvitalstracker.util.RequestNotificationPermission
 

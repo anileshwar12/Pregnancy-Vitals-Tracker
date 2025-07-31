@@ -1,20 +1,31 @@
-package com.acdevs.pregnancyvitalstracker.ui.screen
-
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.acdevs.pregnancyvitalstracker.ui.component.AddVitalsDialog
 import com.acdevs.pregnancyvitalstracker.ui.component.VitalsCard
-import com.acdevs.pregnancyvitalstracker.ui.theme.Pink40
 import com.acdevs.pregnancyvitalstracker.ui.theme.Purple40
-import com.acdevs.pregnancyvitalstracker.ui.theme.Purple80
 import com.acdevs.pregnancyvitalstracker.viewmodel.VitalsViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -39,7 +50,6 @@ fun MainScreen(vm: VitalsViewModel = koinViewModel()) {
                 )
             )
         },
-
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { showDialog = true },
@@ -49,14 +59,14 @@ fun MainScreen(vm: VitalsViewModel = koinViewModel()) {
                 Text("+", color = Color.White)
             }
         }
-
     ) { padding ->
-        Column(
+        LazyColumn(
+            contentPadding = PaddingValues(16.dp),
             modifier = Modifier
-                .padding(padding)
-                .padding(16.dp)
+                .fillMaxSize()
+                .padding(padding) // Important: apply Scaffold's padding
         ) {
-            vitalsList.forEach { entry ->
+            items(vitalsList) { entry ->
                 VitalsCard(entry)
                 Spacer(modifier = Modifier.height(8.dp))
             }
@@ -73,4 +83,3 @@ fun MainScreen(vm: VitalsViewModel = koinViewModel()) {
         )
     }
 }
-

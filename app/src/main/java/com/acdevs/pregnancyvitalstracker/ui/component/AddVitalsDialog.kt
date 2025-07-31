@@ -2,18 +2,19 @@ package com.acdevs.pregnancyvitalstracker.ui.component
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.acdevs.pregnancyvitalstracker.data.local.Vitals
 import com.acdevs.pregnancyvitalstracker.ui.theme.Purple40
-
 @Composable
 fun AddVitalsDialog(
     onDismiss: () -> Unit,
@@ -53,46 +54,68 @@ fun AddVitalsDialog(
                 ) {
                     OutlinedTextField(
                         value = systolic,
-                        onValueChange = { systolic = it },
+                        onValueChange = { input ->
+                            if (input.all { it.isDigit() } || input.isEmpty()) {
+                                systolic = input
+                            }
+                        },
                         label = { Text("Sys BP") },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(8.dp),
-
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                     )
 
                     OutlinedTextField(
                         value = diastolic,
-                        onValueChange = { diastolic = it },
+                        onValueChange = { input ->
+                            if (input.all { it.isDigit() } || input.isEmpty()) {
+                                diastolic = input
+                            }
+                        },
                         label = { Text("Dia BP") },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(8.dp),
-
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                     )
                 }
 
                 OutlinedTextField(
                     value = weight,
-                    onValueChange = { weight = it },
-                    label = { Text("Weight ( in kg )") },
+                    onValueChange = { input ->
+                        if (input.all { it.isDigit() } || input.isEmpty()) {
+                            weight = input
+                        }
+                    },
+                    label = { Text("Weight (in kg)") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
 
-                    )
                 OutlinedTextField(
                     value = heartrate,
-                    onValueChange = { heartrate = it },
+                    onValueChange = { input ->
+                        if (input.all { it.isDigit() } || input.isEmpty()) {
+                            heartrate = input
+                        }
+                    },
                     label = { Text("Heart Rate") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                )
 
-                    )
                 OutlinedTextField(
                     value = kicks,
-                    onValueChange = { kicks = it },
+                    onValueChange = { input ->
+                        if (input.all { it.isDigit() } || input.isEmpty()) {
+                            kicks = input
+                        }
+                    },
                     label = { Text("Baby Kicks") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
-
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -116,7 +139,6 @@ fun AddVitalsDialog(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Purple40
                     )
-
                 ) {
                     Text(
                         text = "Submit",
